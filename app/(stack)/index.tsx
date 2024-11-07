@@ -6,6 +6,7 @@ import {FlashList} from "@shopify/flash-list"
 import {Link} from "expo-router"
 import {SafeAreaView} from "react-native-safe-area-context"
 import {TabBarIcon} from "@/components/navigation/TabBarIcon"
+import Layout from "@/components/Layout"
 
 type Question = {
     questionNo: number
@@ -30,19 +31,7 @@ export default function Home() {
     console.log("Home render")
 
     return (
-        <SafeAreaView className=" flex-1 mt-7 px-2">
-            <View className=" my-4">
-                <Image
-                    source={require("@/assets/images/mtk.png")}
-                    alt="Min Thein Kha"
-                    resizeMode="cover"
-                    className=" mx-auto w-28 h-28"
-                />
-                <Text className=" text-center text-3xl mt-5">
-                    လက်ထောက်ဗေဒင်
-                </Text>
-            </View>
-
+        <Layout>
             <View className=" flex-row items-center border border-white p-2 mb-8">
                 <TextInput
                     className=" flex-grow text-white text-lg my-3"
@@ -63,7 +52,7 @@ export default function Home() {
                     console.log("List Item ", item.questionNo)
                     return (
                         <Link
-                            href={"/"}
+                            href={`/(stack)/select/${item.questionNo}`}
                             asChild
                             className=" border border-white rounded-md p-2"
                         >
@@ -81,6 +70,6 @@ export default function Home() {
                 )}
                 estimatedItemSize={120}
             />
-        </SafeAreaView>
+        </Layout>
     )
 }

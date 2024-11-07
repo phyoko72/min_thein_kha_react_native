@@ -3,5 +3,9 @@ import {Stack} from "expo-router"
 import {View} from "react-native"
 
 export default function StackLayout() {
-    return <Stack screenOptions={{headerShown: false}} />
+    return (
+        <Stack screenOptions={{headerShown: false}}>
+            <Stack.Screen name="index" />
+        </Stack>
+    )
 }
