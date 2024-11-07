@@ -1,11 +1,36 @@
 import Layout from "@/components/Layout"
 import Text from "@/components/Text"
-import {useLocalSearchParams, useRouter} from "expo-router"
+import {Link, useLocalSearchParams, useRouter} from "expo-router"
 import {Pressable, ScrollView, View} from "react-native"
 import data from "@/data/data.json"
-import {FlashList} from "@shopify/flash-list"
-import {TouchableOpacity} from "react-native-gesture-handler"
-import {SafeAreaView} from "react-native-safe-area-context"
+
+const mmToEng = (x: string): number => {
+    switch (x) {
+        case "၁":
+            return 1
+        case "၂":
+            return 2
+        case "၃":
+            return 3
+        case "၄":
+            return 4
+        case "၅":
+            return 5
+        case "၆":
+            return 6
+        case "၇":
+            return 7
+        case "၈":
+            return 8
+        case "၉":
+            return 9
+        case "၁၀":
+            return 10
+        default:
+            return 0
+    }
+}
+
 export default function SelectAnswer() {
     const {id} = useLocalSearchParams<{id: string}>()
     const question = data.questions.find((qtn) => qtn.questionNo === Number(id))
@@ -27,12 +52,25 @@ export default function SelectAnswer() {
                 <View className=" h-[500px] bg-blue-500 flex-wrap gap-1">
                     {data.numberList.map((item, index) => {
                         return (
-                            <Pressable
+                            <Link
                                 key={index}
-                                className=" p-1 w-16 h-16 sm:w-20 sm:h-20 justify-center items-center bg-[#5c281d]"
+                                href={{
+                                    pathname: "/(stack)/answer/[answerId]",
+                                    params: {
+                                        answerId: mmToEng(item),
+                                        questionId: question?.questionNo,
+                                    },
+                                }}
+                                replace
+                                asChild
                             >
-                                <Text>{item}</Text>
-                            </Pressable>
+                                <Pressable
+                                    key={index}
+                                    className=" p-1 w-16 h-16 sm:w-20 sm:h-20 justify-center items-center bg-[#5c281d]"
+                                >
+                                    <Text>{item}</Text>
+                                </Pressable>
+                            </Link>
                         )
                     })}
                 </View>

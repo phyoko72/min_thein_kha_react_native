@@ -8,7 +8,7 @@ interface Props {
 
 export default function Layout({children}: Props) {
     return (
-        <SafeAreaView className=" flex-1 mt-2 sm:mt-6 px-2">
+        <SafeAreaView className=" flex-1 mt-2 sm:mt-6 max-w-screen-md px-2">
             <View className=" my-4">
                 <Image
                     source={require("@/assets/images/mtk.png")}
