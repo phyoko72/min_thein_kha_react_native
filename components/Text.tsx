@@ -1,5 +1,14 @@
 import {Text as CustomText} from "react-native"
 
-export default function Text({children}: {children: string}) {
-    return <CustomText className=" text-white text-2xl">{children}</CustomText>
+interface Props {
+    className?: string
+    children: string
+}
+
+export default function Text({children, className}: Props) {
+    return (
+        <CustomText className={`text-white/85 text-2xl ${className}`}>
+            {children}
+        </CustomText>
+    )
 }
