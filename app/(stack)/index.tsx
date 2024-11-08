@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react"
 import Text from "@/components/Text"
-import {TextInput, View, Pressable, TouchableOpacity} from "react-native"
+import {TextInput, View, Pressable} from "react-native"
 import data from "@/data/data.json"
 import {FlashList} from "@shopify/flash-list"
 import {Link} from "expo-router"
@@ -52,10 +52,8 @@ export default function Home() {
                 keyExtractor={(item) => item.questionNo.toString()}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item, index}) => {
-                    console.log(`Index Render Item ${index}`)
                     return (
                         <Link
-                            // href={`/(stack)/select/${item.questionNo}`}
                             href={{
                                 pathname: "/(stack)/select/[id]",
                                 params: {id: item.questionNo},
