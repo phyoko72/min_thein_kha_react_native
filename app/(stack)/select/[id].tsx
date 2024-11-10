@@ -1,10 +1,10 @@
-import {Link, useLocalSearchParams, useRouter} from "expo-router"
 import {
     FlatList,
     Pressable,
     TouchableOpacity,
     useWindowDimensions,
 } from "react-native"
+import {Link, useLocalSearchParams, useRouter} from "expo-router"
 import Text from "@/components/Text"
 import data from "@/data/data.json"
 

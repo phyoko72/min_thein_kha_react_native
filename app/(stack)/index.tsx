@@ -1,10 +1,10 @@
 import {useEffect, useRef, useState} from "react"
-import Text from "@/components/Text"
 import {TextInput, View, Pressable} from "react-native"
-import data from "@/data/data.json"
-import {FlashList} from "@shopify/flash-list"
 import {Link} from "expo-router"
+import {FlashList} from "@shopify/flash-list"
+import Text from "@/components/Text"
 import {TabBarIcon} from "@/components/navigation/TabBarIcon"
+import data from "@/data/data.json"
 
 type Question = {
     questionNo: number
@@ -21,12 +21,14 @@ export default function Home() {
         if (!inputText.trim()) return setQuestions(data.questions)
 
         const timeOut = setTimeout(() => {
-            inputRef.current?.blur()
             const result = data.questions.filter((qtn) =>
                 qtn.questionName.includes(inputText.trim())
             )
+            if (result.length > 0) {
+                inputRef.current?.blur()
+            }
             setQuestions(result)
-        }, 700)
+        }, 1500)
         return () => clearTimeout(timeOut)
     }, [inputText])
 
@@ -41,7 +43,7 @@ export default function Home() {
                     cursorColor={"white"}
                     value={inputText}
                     onChangeText={setInputText}
-                    style={{fontFamily: "Burmese"}}
+                    style={{fontFamily: "Handwriting"}}
                 />
 
                 <TabBarIcon name="search" size={30} color={"#f5f5f5"} />
@@ -51,6 +53,7 @@ export default function Home() {
                 data={questions}
                 keyExtractor={(item) => item.questionNo.toString()}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={{paddingBottom: 10}}
                 renderItem={({item, index}) => {
                     return (
                         <Link

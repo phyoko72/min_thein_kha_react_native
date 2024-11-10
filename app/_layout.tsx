@@ -4,20 +4,19 @@ import {Stack} from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import {useEffect} from "react"
 import "react-native-reanimated"
-
-import {useColorScheme} from "@/hooks/useColorScheme"
+import * as SystemUI from "expo-system-ui"
+import {StatusBar} from "expo-status-bar"
 
 import "../global.css"
 import {DarkTheme} from "@/utils/CustomTheme"
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
+SystemUI.setBackgroundColorAsync("#5c281d")
 
 export default function RootLayout() {
-    const colorScheme = useColorScheme()
     const [loaded] = useFonts({
         SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-        Burmese: require("../assets/fonts/Handwriting.ttf"),
+        Handwriting: require("../assets/fonts/Handwriting.ttf"),
     })
 
     useEffect(() => {
@@ -29,12 +28,17 @@ export default function RootLayout() {
     if (!loaded) {
         return null
     }
-
     return (
-        <ThemeProvider value={DarkTheme}>
-            <Stack>
-                <Stack.Screen name="(stack)" options={{headerShown: false}} />
-            </Stack>
-        </ThemeProvider>
+        <>
+            <ThemeProvider value={DarkTheme}>
+                <Stack>
+                    <Stack.Screen
+                        name="(stack)"
+                        options={{headerShown: false}}
+                    />
+                </Stack>
+            </ThemeProvider>
+            <StatusBar style={"light"} />
+        </>
     )
 }

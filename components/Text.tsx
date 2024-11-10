@@ -10,7 +10,7 @@ export default function Text({children, className, textProps}: Props) {
     return (
         <CustomText
             className={`text-[#e5e5e5] text-xl sm:text-3xl ${className} leading-10 pt-2`}
-            style={{fontFamily: "Burmese"}}
+            style={{fontFamily: "Handwriting"}}
             {...textProps}
         >
             {children}

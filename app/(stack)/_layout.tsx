@@ -1,9 +1,6 @@
-import Header from "@/components/Header"
-import Text from "@/components/Text"
-import {Slot, Stack} from "expo-router"
-import {StatusBar} from "expo-status-bar"
-import {Image, View} from "react-native"
+import {Slot} from "expo-router"
 import {SafeAreaView} from "react-native-safe-area-context"
+import Header from "@/components/Header"
 
 export default function StackLayout() {
     return (
@@ -12,7 +9,6 @@ export default function StackLayout() {
                 <Header />
                 <Slot />
             </SafeAreaView>
-            <StatusBar style="light" />
         </>
     )
 }

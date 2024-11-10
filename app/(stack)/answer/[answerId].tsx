@@ -1,6 +1,6 @@
-import Text from "@/components/Text"
-import {useLocalSearchParams, useRouter} from "expo-router"
 import {Pressable} from "react-native"
+import {useLocalSearchParams, useRouter} from "expo-router"
+import Text from "@/components/Text"
 import data from "@/data/data.json"
 
 const mmToEng = (x: string): number => {
@@ -41,7 +41,7 @@ export default function SelectAnswer() {
             ans.answerNo === mmToEng(answerId)
     )
     const router = useRouter()
-    console.log({result})
+
     return (
         <>
             <Pressable
